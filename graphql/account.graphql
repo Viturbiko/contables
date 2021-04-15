@@ -1,0 +1,19 @@
+type Account {
+    id: ID!
+    name: String!
+    balance: Float!
+    created_at: DateTime!
+    updated_at: DateTime!
+    user: User! @belongsTo
+    transactions: [Transaction!] @hasMany
+}
+
+# Se define el input que se utiliza en la siguiente función, como el tipo de parámetro que se debe recibir
+input CreateAccountInput {
+    name: String!
+    balance: Float! @rules(apply: ["gte: 0"])
+}
+
+input UpdateAccountInput {
+    name: String!
+}
